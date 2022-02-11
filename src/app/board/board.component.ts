@@ -11,7 +11,7 @@ export class BoardComponent implements OnInit {
   squares: any[] = [];
   xIsNext: boolean |undefined;
   winner: string|undefined|null;
-   
+  gametie: boolean =false;
 
   constructor() { }
 
@@ -31,11 +31,14 @@ export class BoardComponent implements OnInit {
   }
 
   makeMove(index:number){// for click event 
-  if(!this.squares[index]){ // if this index is not clicked
+  if(!this.squares[index]){ // if this index is not clicked before
     this.squares.splice(index,1,this.player);
     this.xIsNext = !this.xIsNext
-  }
+    this.gametie = !this.squares.includes(null)
+    
 
+  }
+  
   this.winner = this.calculateWinner()
   }
   calculateWinner() {
